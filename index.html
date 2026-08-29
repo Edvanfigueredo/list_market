@@ -29,6 +29,15 @@
     </header>
     <section class="view active" id="view-planejar">
       <div class="tip-box">💡 FASE 1: Ajuste as quantidades e salve antes de ir ao mercado!</div>
+      <form class="add-item-form" id="addItemForm">
+        <div class="add-item-title">✨ ADICIONAR NOVO ITEM</div>
+        <div class="add-item-fields">
+          <label class="emoji-field" for="itemEmoji">EMOJI<input id="itemEmoji" name="emoji" type="text" value="🛒" maxlength="8" aria-label="Emoji do item"></label>
+          <label>NOME<input id="itemName" name="name" type="text" maxlength="40" placeholder="Ex.: Chocolate" required></label>
+          <label>MEDIDA<input id="itemDescription" name="description" type="text" maxlength="30" placeholder="Ex.: 200g"></label>
+        </div>
+        <button class="add-item-btn" type="submit">＋ ADICIONAR À LISTA</button>
+      </form>
       <div id="list-planejar"></div>
       <button class="save-btn" id="saveBtn" type="button">💾 SALVAR LISTA</button>
     </section>

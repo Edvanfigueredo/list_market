@@ -1,3 +1,5 @@
-import {products} from '../data/products.js';import {loadItem,saveItem} from '../services/storage.js';
+import {products as defaultProducts} from '../data/products.js';import {loadCustomProducts,loadItem,saveCustomProducts,saveItem} from '../services/storage.js';
+export const products=[...defaultProducts,...loadCustomProducts()];
 export const state=Object.fromEntries(products.map(product=>{const saved=loadItem(product.id);return [product.id,{qty:saved?.qty||1,price:saved?.price||'',done:saved?.done||false}]}));
 export function changeQuantity(id,delta){state[id].qty=Math.max(1,state[id].qty+delta);save(id)}export function setPrice(id,price){state[id].price=price;state[id].done=Number.parseFloat(price.replace(',','.'))>0;save(id)}export function save(id){saveItem(id,state[id])}export function saveAll(){products.forEach(product=>save(product.id))}
+export function addCustomProduct({name,description,emoji}){const product={id:`custom-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,nome:name.trim(),sub:description.trim()||'unidade',emoji:emoji.trim()||'🛒',bg:'#1b3154',custom:true};products.push(product);state[product.id]={qty:1,price:'',done:false};saveCustomProducts(products.filter(item=>item.custom));return product}
