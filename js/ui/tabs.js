@@ -1,0 +1,1 @@
+export function setupTabs(onMarketOpen){['planejar','mercado'].forEach(tab=>document.getElementById(`tab-${tab}`).addEventListener('click',()=>{['planejar','mercado'].forEach(name=>{document.getElementById(`tab-${name}`).classList.toggle('active',name===tab);document.getElementById(`view-${name}`).classList.toggle('active',name===tab)});if(tab==='mercado')onMarketOpen()}))}
